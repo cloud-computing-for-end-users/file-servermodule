@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "file-servermodule", "file-servermodule\file-servermodule.csproj", "{4921A58E-EF75-4CE4-AB42-A7EF35DDC884}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "custom-message-based-implementation", "..\..\utility-netmq-protocol\src\protocol\custom-message-based-implementation\custom-message-based-implementation.csproj", "{D515D0CF-D337-4AB2-8573-4B1101CA9982}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "message-based-communication", "..\..\utility-netmq-protocol\src\protocol\message-based-communication\message-based-communication.csproj", "{38044F39-3C4B-42CD-9CE1-CD924B6D4994}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4921A58E-EF75-4CE4-AB42-A7EF35DDC884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4921A58E-EF75-4CE4-AB42-A7EF35DDC884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4921A58E-EF75-4CE4-AB42-A7EF35DDC884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4921A58E-EF75-4CE4-AB42-A7EF35DDC884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D515D0CF-D337-4AB2-8573-4B1101CA9982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D515D0CF-D337-4AB2-8573-4B1101CA9982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D515D0CF-D337-4AB2-8573-4B1101CA9982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D515D0CF-D337-4AB2-8573-4B1101CA9982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38044F39-3C4B-42CD-9CE1-CD924B6D4994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38044F39-3C4B-42CD-9CE1-CD924B6D4994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38044F39-3C4B-42CD-9CE1-CD924B6D4994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38044F39-3C4B-42CD-9CE1-CD924B6D4994}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3205186C-3E3F-4FB8-ACA0-BB81503ADA4D}
+	EndGlobalSection
+EndGlobal
