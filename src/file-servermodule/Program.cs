@@ -142,6 +142,8 @@ namespace file_servermodule
                     file.GetListOfFiles(new PrimaryKey { TheKey = 124 }); // directory does not exist
                     Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "125");
                     file.GetListOfFiles(new PrimaryKey { TheKey = 125 }); // empty directory
+
+                    file.RenameFile(filename, new FileName{FileNameProp = "renamed.txt"}, pk);
                 }
             }
             catch (Exception ex)

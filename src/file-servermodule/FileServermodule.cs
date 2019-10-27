@@ -38,6 +38,10 @@ namespace file_servermodule
                     responsePayload = null;
                     UploadFile(requestUploadFile.File, requestUploadFile.PrimaryKey, requestUploadFile.Overwrite);
                     break;
+                case RequestRenameFile requestRenameFile:
+                    responsePayload = null;
+                    RenameFile(requestRenameFile.OldFileName, requestRenameFile.NewFileName, requestRenameFile.PrimaryKey);
+                    break;
                 default:
                     throw new Exception("Received message that I don't know how to handle");
             }
@@ -109,6 +113,21 @@ namespace file_servermodule
             
             // todo maybe return null and log?
             throw new ArgumentException("There is no file in: " + path);
+        }
+
+        public void RenameFile(FileName oldFileName, FileName newFileName, PrimaryKey pk)
+        {
+            Logger.Debug("RenameFile; Old file name: " + oldFileName.FileNameProp + "; New file name: " + newFileName.FileNameProp + "; Primary key: " + pk.TheKey);
+            var basePath = AppDomain.CurrentDomain.BaseDirectory + pk.TheKey + Path.DirectorySeparatorChar;
+            var oldPath = basePath + oldFileName.FileNameProp;
+            var newPath = basePath + newFileName.FileNameProp;
+
+            if (System.IO.File.Exists(oldPath))
+            {
+                System.IO.File.Move(oldPath, newPath);
+            } else {
+                throw new ArgumentException("There is no file in: " + oldPath);
+            }
         }
     }
 }
