@@ -163,12 +163,16 @@ namespace file_servermodule
             {
                 if(data == null) {
                     WriteLineAndLog("Creating new file: " + path);
-                    using var sw = System.IO.File.CreateText(path);
-                    sw.WriteLine("The very first line!");
+                    using (var sw = System.IO.File.CreateText(path))
+                    {
+                        sw.WriteLine("The very first line!");
+                    }
                 } else {
                     WriteLineAndLog("Creating new file with data: " + path);
-                    using var fs = System.IO.File.Create(path);
-                    fs.Write(data);
+                    using (var fs = System.IO.File.Create(path))
+                    {
+                        fs.Write(data);
+                    }
                 }
             }
             else if (System.IO.File.Exists(path))
@@ -176,14 +180,18 @@ namespace file_servermodule
                 if (data == null)
                 {
                     WriteLineAndLog("Appending existing file: " + path);
-                    using var sw = new StreamWriter(path, true);
-                    sw.WriteLine("The next line!");
+                    using (var sw = new StreamWriter(path, true))
+                    {
+                        sw.WriteLine("The next line!");
+                    }
                 }
                 else
                 {
                     WriteLineAndLog("Rewriting existing file with data: " + path);
-                    using var fs = System.IO.File.Open(path, FileMode.Create);
-                    fs.Write(data);
+                    using (var fs = System.IO.File.Open(path, FileMode.Create))
+                    {
+                        fs.Write(data);
+                    }
                 }
             }
         }

@@ -29,12 +29,15 @@ namespace file_servermodule
             switch (message)
             {
                 case RequestGetListOfFiles reqGetListOfFiles:
+                    Console.WriteLine("handeling request for GetListOfFiles");
                     responsePayload = GetListOfFiles(reqGetListOfFiles.PrimaryKey);
                     break;
                 case RequestDownloadFile requestDownloadFile:
+                    Console.WriteLine("Handling request for Download of file");
                     responsePayload = DownloadFile(requestDownloadFile.FileName, requestDownloadFile.PrimaryKey);
                     break;
                 case RequestUploadFile requestUploadFile:
+                    Console.WriteLine("Handling request for upoading of file");
                     responsePayload = null;
                     UploadFile(requestUploadFile.File, requestUploadFile.PrimaryKey, requestUploadFile.Overwrite);
                     break;
