@@ -1,4 +1,4 @@
 #build
 docker build -t file-servermodule .
 #run
-docker run -p 5522:5522 -p 5523:5523 file-servermodule isLocal:false rcp:5522 rrp:5523 rip:172.17.0.2
+docker run file-servermodule isLocal:false rcp:5522 rrp:5523 rip:172.17.0.2
