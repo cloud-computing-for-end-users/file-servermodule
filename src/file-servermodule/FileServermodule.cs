@@ -29,21 +29,27 @@ namespace file_servermodule
             switch (message)
             {
                 case RequestGetListOfFiles reqGetListOfFiles:
-                    Console.WriteLine("handeling request for GetListOfFiles");
+                    Console.WriteLine("Handling request for GetListOfFiles");
                     responsePayload = GetListOfFiles(reqGetListOfFiles.PrimaryKey);
                     break;
                 case RequestDownloadFile requestDownloadFile:
-                    Console.WriteLine("Handling request for Download of file");
+                    Console.WriteLine("Handling request for DownloadFile");
                     responsePayload = DownloadFile(requestDownloadFile.FileName, requestDownloadFile.PrimaryKey);
                     break;
                 case RequestUploadFile requestUploadFile:
-                    Console.WriteLine("Handling request for upoading of file");
+                    Console.WriteLine("Handling request for UploadFile");
                     responsePayload = null;
                     UploadFile(requestUploadFile.File, requestUploadFile.PrimaryKey, requestUploadFile.Overwrite);
                     break;
                 case RequestRenameFile requestRenameFile:
+                    Console.WriteLine("Handling request for RenameFile");
                     responsePayload = null;
                     RenameFile(requestRenameFile.OldFileName, requestRenameFile.NewFileName, requestRenameFile.PrimaryKey);
+                    break;
+                case RequestRemoveFile requestRemoveFile:
+                    Console.WriteLine("Handling request for RenameFile");
+                    responsePayload = null;
+                    RemoveFile(requestRemoveFile.FileName, requestRemoveFile.PrimaryKey);
                     break;
                 default:
                     throw new Exception("Received message that I don't know how to handle");
@@ -131,6 +137,20 @@ namespace file_servermodule
             } else {
                 throw new ArgumentException("There is no file in: " + oldPath);
             }
+        }
+
+        public void RemoveFile(FileName fileName, PrimaryKey pk)
+        {
+            Logger.Debug("RemoveFile; File name: " + fileName.FileNameProp + "; Primary key: " + pk.TheKey);
+            var path = AppDomain.CurrentDomain.BaseDirectory + pk.TheKey + Path.DirectorySeparatorChar + fileName.FileNameProp;
+
+            if (!System.IO.File.Exists(path))
+            {
+                // todo maybe return null and log?
+                throw new ArgumentException("There is no file in: " + path);
+            }
+
+            System.IO.File.Delete(path);
         }
     }
 }
