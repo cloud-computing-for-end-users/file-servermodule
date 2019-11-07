@@ -144,6 +144,8 @@ namespace file_servermodule
                     file.GetListOfFiles(new PrimaryKey { TheKey = 125 }); // empty directory
 
                     file.RenameFile(filename, new FileName{FileNameProp = "renamed.txt"}, pk);
+                    
+                    file.RemoveFile(filename2, pk);
                 }
             }
             catch (Exception ex)
