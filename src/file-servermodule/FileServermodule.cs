@@ -102,7 +102,7 @@ namespace file_servermodule
 
         public File DownloadFile(FileName fileName, PrimaryKey pk)
         {
-            Logger.Debug("DownloadFile; File name: " + fileName.FileNameProp + "; Primary key: " + pk.TheKey);
+            Logger.Debug("DownloadFile; File name: " + fileName?.FileNameProp + "; Primary key: " + pk?.TheKey);
             var path = AppDomain.CurrentDomain.BaseDirectory + pk.TheKey + Path.DirectorySeparatorChar + fileName.FileNameProp;
 
             if (System.IO.File.Exists(path))
@@ -120,7 +120,17 @@ namespace file_servermodule
 
         public void RenameFile(FileName oldFileName, FileName newFileName, PrimaryKey pk)
         {
-            Logger.Debug("RenameFile; Old file name: " + oldFileName.FileNameProp + "; New file name: " + newFileName.FileNameProp + "; Primary key: " + pk.TheKey);
+            if (
+                   null == oldFileName 
+                || null == newFileName
+                || String.Empty.Equals(newFileName?.FileNameProp.Trim())
+                || String.Empty.Equals(newFileName?.FileNameProp.Trim())
+                )
+            {
+                Logger.Debug("Skipping rename of file, because either of the filenames were empty or null");
+                return; // skippring the rename of file
+            }
+            Logger.Debug("RenameFile; Old file name: " + oldFileName?.FileNameProp + "; New file name: " + newFileName?.FileNameProp + "; Primary key: " + pk?.TheKey);
             var basePath = AppDomain.CurrentDomain.BaseDirectory + pk.TheKey + Path.DirectorySeparatorChar;
             var oldPath = basePath + oldFileName.FileNameProp;
             var newPath = basePath + newFileName.FileNameProp;
