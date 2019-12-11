@@ -96,6 +96,8 @@ namespace file_servermodule
                         }
                     }
                 }
+                Console.WriteLine("Using Localhost:" + IsLocalhost);
+
 
                 if (null == self_conn_info.IP.TheIP)
                 {
@@ -117,35 +119,35 @@ namespace file_servermodule
                 WriteLineAndLog("File servermodule has started successfully with self IP: " + self_conn_info.IP.TheIP + " and server IP: " + router_conn_info.IP.TheIP);
                 if (IsTesting)
                 {
-                    WriteLineAndLog("Testing enabled");
-                    var path = AppDomain.CurrentDomain.BaseDirectory + "testGenerated.txt";
-                    CreateTextFile(path);
+                    //    WriteLineAndLog("Testing enabled");
+                    //    var path = AppDomain.CurrentDomain.BaseDirectory + "testGenerated.txt";
+                    //    CreateTextFile(path);
 
-                    var data = System.IO.File.ReadAllBytes(path);
+                    //    var data = System.IO.File.ReadAllBytes(path);
 
-                    var pk = new PrimaryKey {TheKey = 123};
-                    var filename = new FileName {FileNameProp = "testUpload.txt"};
-                    var filename2 = new FileName {FileNameProp = "testUpload2.txt"};
+                    //    var pk = new PrimaryKey {TheKey = 123};
+                    //    var filename = new FileName {FileNameProp = "testUpload.txt"};
+                    //    var filename2 = new FileName {FileNameProp = "testUpload2.txt"};
 
-                    file.UploadFile(new File{FileName = filename, FileData = data}, pk, true);
-                    file.UploadFile(new File { FileName = filename2, FileData = data }, pk, false);
+                    //    file.UploadFile(new File{FileName = filename, FileData = data}, pk, true);
+                    //    file.UploadFile(new File { FileName = filename2, FileData = data }, pk, false);
 
-                    var downloadedFile = file.DownloadFile(filename, pk);
-                    path = AppDomain.CurrentDomain.BaseDirectory + downloadedFile.FileName.FileNameProp;
-                    CreateTextFile(path, downloadedFile.FileData);
+                    //    var downloadedFile = file.DownloadFile(filename, pk);
+                    //    path = AppDomain.CurrentDomain.BaseDirectory + downloadedFile.FileName.FileNameProp;
+                    //    CreateTextFile(path, downloadedFile.FileData);
 
-                    var files = file.GetListOfFiles(pk); // contains the two files created above
-                    foreach (var f in files)
-                    {
-                        WriteLineAndLog(f.FileNameProp);
-                    }
-                    file.GetListOfFiles(new PrimaryKey { TheKey = 124 }); // directory does not exist
-                    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "125");
-                    file.GetListOfFiles(new PrimaryKey { TheKey = 125 }); // empty directory
+                    //    var files = file.GetListOfFiles(pk); // contains the two files created above
+                    //    foreach (var f in files)
+                    //    {
+                    //        WriteLineAndLog(f.FileNameProp);
+                    //    }
+                    //    file.GetListOfFiles(new PrimaryKey { TheKey = 124 }); // directory does not exist
+                    //    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "125");
+                    //    file.GetListOfFiles(new PrimaryKey { TheKey = 125 }); // empty directory
 
-                    file.RenameFile(filename, new FileName{FileNameProp = "renamed.txt"}, pk);
-                    
-                    file.RemoveFile(filename2, pk);
+                    //    file.RenameFile(filename, new FileName{FileNameProp = "renamed.txt"}, pk);
+
+                    //    file.RemoveFile(filename2, pk);
                 }
             }
             catch (Exception ex)
@@ -165,13 +167,16 @@ namespace file_servermodule
         {
             if (!System.IO.File.Exists(path))
             {
-                if(data == null) {
+                if (data == null)
+                {
                     WriteLineAndLog("Creating new file: " + path);
                     using (var sw = System.IO.File.CreateText(path))
                     {
                         sw.WriteLine("The very first line!");
                     }
-                } else {
+                }
+                else
+                {
                     WriteLineAndLog("Creating new file with data: " + path);
                     using (var fs = System.IO.File.Create(path))
                     {
